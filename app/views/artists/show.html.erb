@@ -1,5 +1,30 @@
+<%= link_to 'Back to Artists', artists_path %>
 
 <p>
     <strong>Name:</strong>
     <%= @artist.name %>
 </p>
+
+<%= link_to 'Edit', edit_artist_path(@artist) %>
+
+<h2>Songs</h2>
+<% @artist.songs.each do |song| %>
+    <p>
+        <strong>Title:</strong>
+        <%= song.title %>
+        <%= link_to 'Delete Song', [song.artist, song],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+    </p>
+<% end %>
+ 
+<h2>Add a song:</h2>
+<%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
