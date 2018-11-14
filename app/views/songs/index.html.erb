@@ -1,0 +1,17 @@
+<h1>All Songs</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th colspan='3'></th>
+    </tr>
+
+    <% @songs.each do |song| %>
+        <tr>
+            <td><%= song.title %></td>
+            <td><%= song.artist.name %></td>
+        </tr>
+    <% end %>
+</table>
+
+<p><%= link_to 'Dashboard', welcome_index_path %></p>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  resources :songs, only: [:index]
   resources :artists do
     resources :songs
   end

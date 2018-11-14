@@ -1,4 +1,14 @@
 class SongsController < ApplicationController
+    before_action :load_artist
+
+    def load_artist
+        @artist = Artist.find(params[:artist_id]) if params[:artist_id].present?
+    end
+
+    def index
+        @songs = @artist.present? ?  @artist.songs : Song.all
+    end
+
     def create
         @artist = Artist.find(params[:artist_id])
         @song = @artist.songs.create(song_params)
