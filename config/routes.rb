@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tab/show'
+  get 'tab/create'
   get 'welcome/index'
 
   resources :songs, only: [:index]
