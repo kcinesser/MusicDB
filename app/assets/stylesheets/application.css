@@ -13,3 +13,79 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    margin: 0px;
+}
+
+h1, h2, h3 {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+p, a, th, td {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav li a:hover {
+    background-color: #111;
+}
+
+.content {
+    padding: 20px;
+}
+
+.btn, input[type="submit"] {
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #4589f7;
+    text-decoration: none;
+    border: none;
+}
+
+form {
+    width: 20%;
+    padding: 10px 20px;
+    box-shadow: 5px 5px #b5b5b5;
+    background: #e2e2e2;
+}
+
+form label {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    font-size: 24px;
+}
+
+th, td {
+    text-align: left;
+}

@@ -1,0 +1,34 @@
+<%= form_for([:artist, @song]) do |form| %>
+ 
+    <% if @song.errors.any? %>
+        <div id="error_explanation">
+        <h2>
+            <%= pluralize(@song.errors.count, "error") %> prohibited
+            this song from being saved:
+        </h2>
+        <ul>
+            <% @song.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+    
+    <p>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+    </p>
+
+    <p>
+        <%= form.label :tab %><br>
+        <%= form.file_field :tab, multiple: false, direct_upload: true %>
+    </p>
+    <p>
+        <%= form.label :status%><br>
+        <%= form.select :status, Song.statuses.keys.map { |m| [m.titlecase, m]} %>
+    </p>
+    <p>
+        <%= form.submit %>
+    </p>
+ 
+<% end %>

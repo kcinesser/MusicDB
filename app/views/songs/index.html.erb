@@ -1,17 +1,32 @@
-<h1>All Songs</h1>
+<div class="header">
+        <h1>Songs</h1>
+</div>
 
 <table>
     <tr>
         <th>Title</th>
-        <th colspan='3'></th>
+        <th>Artist</th>
+        <th>Tab</th>
+        <th></th>
     </tr>
 
     <% @songs.each do |song| %>
         <tr>
             <td><%= song.title %></td>
             <td><%= song.artist.name %></td>
+            <td><% if song.tab.attached? %>
+                    <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
+                <% end %>
+            </td>
+            <td><%= link_to edit_artist_song_path(song.artist,song) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                <% end %>
+                <%= link_to [song.artist, song],
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } do %>
+                        <i class="fas fa-times"></i>
+                <% end %>
+            </td>
         </tr>
     <% end %>
 </table>
-
-<p><%= link_to 'Dashboard', welcome_index_path %></p>
