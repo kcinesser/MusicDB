@@ -1,27 +1,41 @@
-<div class="header">
-    <h1>Artists</h1>
-    <%= link_to 'New Artist', new_artist_path, class: :btn %>
+<div class="header row">
+    <div class="col-md-6">
+        <h1>Artists</h1>
+    </div>
+    <div class="col-md-6">
+        <%= link_to 'New Artist', new_artist_path, class: :btn %>
+    </div>
 </div>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th># Songs</th>
-        <th colspan='3'></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+        <table class="table-striped table-hover">
+            <tr>
+                <th>Name</th>
+                <th># Songs</th>
+                <th colspan='3'></th>
+            </tr>
 
-    <% @artists.each do |artist| %>
-        <tr>
-            <td><%= link_to artist.name, artist_path(artist) %></td>
-            <td><%= artist.songs.count %></td>
-            <td><%= link_to edit_artist_path(artist) do %>
-              <i class="fas fa-pencil-alt"></i>
+            <% @artists = @artists.order("name") %>
+            <% @artists.each do |artist| %>
+                <tr>
+                    <td><%= link_to artist.name, artist_path(artist) %></td>
+                    <td><%= artist.songs.count %></td>
+                    <td><%= link_to edit_artist_path(artist) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                    <%= link_to artist_path(artist),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } do %>
+                            <i class="fas fa-times"></i>
+                    <% end %></td>
+                </tr>
             <% end %>
-            <%= link_to artist_path(artist),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } do %>
-                    <i class="fas fa-times"></i>
-            <% end %></td>
-        </tr>
-    <% end %>
-</table>
+        </table>
+        </div>
+        </div>
+        
+    </div>
+</div>

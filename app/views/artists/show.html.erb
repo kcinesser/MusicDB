@@ -1,52 +1,63 @@
-<div class="header">
+<div class="header row">
+  <div class="col-md-6">
     <h1><%= @artist.name %></h1>
+  </div>
+  <div class="col-md-6">
     <%= link_to 'Edit', edit_artist_path(@artist), class: :btn %>
+  </div>
 </div>
 
-<h2>Songs</h2>
-<table>
-  <% if @artist.songs.present? %>
-    <% @artist.songs.each do |song| %>
-      <tr>
-        <td><%= song.title %></td>
-        <td><% if song.tab.attached? %>
-              <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
-            <% end %>
-        </td>
-        <td><% if song.status? %>
-              <%= song.status.titlecase %>
-            <% end %></td>
-        <td><%= link_to edit_artist_song_path(@artist,song) do %>
-              <i class="fas fa-pencil-alt"></i>
-            <% end %>
-            <%= link_to [song.artist, song],
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } do %>
-                    <i class="fas fa-times"></i>
-            <% end %>
-        </td>
-      </tr>
+<div class="row">
+  <div class="col-md-6">
+  <h2>Songs</h2>
+  <table class="table-hover table-striped">
+    <% if @artist.songs.present? %>
+      <% @artist.songs.each do |song| %>
+        <tr>
+          <td><%= song.title %></td>
+          <td><% if song.tab.attached? %>
+                <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
+              <% end %>
+          </td>
+          <td><% if song.status? %>
+                <%= song.status.titlecase %>
+              <% end %></td>
+          <td><%= link_to edit_artist_song_path(@artist,song) do %>
+                <i class="fas fa-pencil-alt"></i>
+              <% end %>
+              <%= link_to [song.artist, song],
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } do %>
+                      <i class="fas fa-times"></i>
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+        <td>This artist has no songs.</td>
+      <% end %>
+  </table>
+</div>
+  <div class="col-md-6">
+    <%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
+      <h2>Add a song:</h2>
+      <p>
+        <%= form.label :title %><br>
+        <%= form.text_field :title, required: :true %>
+      </p>
+      <p>
+        <%= form.label :tab %><br>
+        <%= form.file_field :tab, multiple: false, direct_upload: true %>
+      </p>
+      <p>
+        <%= form.label :status%><br>
+        <%= form.select :status, Song.statuses.keys.map { |m| [m.titlecase, m]} %>
+      </p>
+      <p>
+        <%= form.submit 'Submit', :class => 'btn' %>
+      </p>
     <% end %>
-  <% else %>
-      <td>This artist has no songs.</td>
-    <% end %>
-</table>
- 
-<%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
-  <h2>Add a song:</h2>
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title, required: :true %>
-  </p>
-  <p>
-    <%= form.label :tab %><br>
-    <%= form.file_field :tab, multiple: false, direct_upload: true %>
-  </p>
-  <p>
-    <%= form.label :status%><br>
-    <%= form.select :status, Song.statuses.keys.map { |m| [m.titlecase, m]} %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+  </div>
+
+</div>
+

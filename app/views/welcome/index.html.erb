@@ -1,38 +1,72 @@
 <h1>Dashboard</h1>
 
-<table>
-    <tr>
-        <th>Recent Artists</th>
-        <th colspan='3'># Songs</th>
-    </tr>
-
-    <% @artists.each do |artist| %>
+<div class="row">
+    <div class="col-sm-6">
+    <table class="table-striped table-hover">
         <tr>
-            <td><%= link_to artist.name, artist_path(artist) %></td>
-            <td><%= artist.songs.count %></td>
+            <th>Recent Artists</th>
+            <th colspan='3'># Songs</th>
         </tr>
-    <% end %>
-</table>
 
-<p><%= link_to 'View All Artists', controller: 'artists' %></p>
+        <% @artists = @artists.order("created_at").reverse %>
 
-<table>
-        <tr>
-            <th>Recent Songs</th>
-            <th></th>
-            <th>Tab</th>
-        </tr>
-    
-        <% @songs.each do |song| %>
+        <% @artists[0..9].each do |artist| %>
             <tr>
-                <td><%= song.title %></td>
-                <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
-                <td><% if song.tab.attached? %>
-                        <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
-                    <% end %>
-                </td>
+                <td><%= link_to artist.name, artist_path(artist) %></td>
+                <td><%= artist.songs.count %></td>
             </tr>
         <% end %>
     </table>
 
-<p><%= link_to 'View All Songs', controller: 'songs' %></p>
+    <p><%= link_to 'View All Artists', { controller: 'artists' }, class: "btn" %></p>
+    </div>
+
+    <div class="col-sm-6">
+        <table class="table-striped table-hover">
+                <tr>
+                    <th>Recent Songs</th>
+                    <th></th>
+                    <th>Tab</th>
+                </tr>
+                
+                <% @songs = @songs.order("created_at").reverse %>
+                
+                <% @songs[0..9].each do |song| %>
+                    <tr>
+                        <td><%= song.title %></td>
+                        <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
+                        <td><% if song.tab.attached? %>
+                                <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+
+        <p><%= link_to 'View All Songs', { controller: 'songs' }, class: "btn" %></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <table class="table-striped table-hover">
+            <tr>
+                <th>In Progress Songs</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% @songs.each do |song| %>
+                <% if song.status == "in_progress" %>
+                    <tr>
+                        <td><%= song.title %></td>
+                        <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
+                        <td><% if song.tab.attached? %>
+                                <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
+</div>
