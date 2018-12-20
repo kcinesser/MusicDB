@@ -24,8 +24,16 @@
         <%= form.file_field :tab, multiple: false, direct_upload: true %>
     </p>
     <p>
-        <%= form.label :status%><br>
+        <%= form.label :status %><br>
         <%= form.select :status, Song.statuses.keys.map { |m| [m.titlecase, m]} %>
+    </p>
+    <p>
+        <%= form.label :instrument %><br>
+        <%= form.select :instrument, Song.instruments.keys.map { |m| [m.titlecase, m]} %>
+    </p>
+    <p>
+        <%= form.label :difficulty %><br>
+        <%= form.select :difficulty, Song.difficulties.keys.map { |m| [m.titlecase, m]} %>
     </p>
     <p>
         <%= form.submit %>

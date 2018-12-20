@@ -11,6 +11,7 @@
                 <th>Title</th>
                 <th>Artist</th>
                 <th>Tab</th>
+                <th>Status</th>
                 <th></th>
             </tr>
 
@@ -23,6 +24,7 @@
                             <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
                         <% end %>
                     </td>
+                    <td><%= song.status.titlecase %></td>
                     <td><%= link_to edit_artist_song_path(song.artist,song) do %>
                             <i class="fas fa-pencil-alt"></i>
                         <% end %>
