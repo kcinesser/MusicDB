@@ -7,7 +7,46 @@
 <div class="row">
     <div class="col-md-12">
         <p><%= @song.status.titlecase %></p>
-        <p><%= @song.instrument.titlecase %></p>
-        <p><%= @song.difficulty.titlecase %></p>
+
+        <% if @song.instrument.present? %>
+            <p><%= @song.instrument.titlecase %></p>
+        <% end %>
+
+        <% if @song.difficulty.present? %>
+            <p><%= @song.difficulty.titlecase %></p>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Notes</h2>
+        <% if @song.notes.present? %>
+            <% @song.notes.each do |note| %>
+                <p><%= note.body %>
+                    <%= link_to [note.song, note],
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } do %>
+                                <i class="fas fa-times"></i>
+                    <% end %>
+                </p>
+            <% end %>
+        <% else %>
+            <p>No notes.</p>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <%= form_with(model: [ @song, @song.notes.build ], local: true) do |form| %>
+            <strong>New Note</strong>
+            <p>
+                <%= form.text_area :body %>
+            </p>
+            <p>
+                <%= form.submit %>
+            </p>
+        <% end %>
     </div>
 </div>

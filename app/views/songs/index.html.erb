@@ -18,7 +18,7 @@
             <% @songs = @songs.order("title") %>
             <% @songs.each do |song| %>
                 <tr>
-                    <td><%= song.title %></td>
+                    <td><%= link_to song.title, artist_song_path(song.artist,song) %></td>
                     <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
                     <td><% if song.tab.attached? %>
                             <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>

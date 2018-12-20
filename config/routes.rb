@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   get 'tab/create'
   get 'welcome/index'
 
-  resources :songs, only: [:index]
+  resources :songs, only: [:index] do
+    resources :notes
+  end
+  
   resources :artists do
-    resources :songs
+    resources :songs 
   end
   
   root 'welcome#index'
