@@ -16,12 +16,18 @@
 
   <body>
     <div class="row nav">
-    <div class="col-md-9">
+    <div class="col-md-6">
       <ul>
         <li><%= link_to 'Dashboard', welcome_index_path %></li>
         <li><%= link_to 'Artists', artists_path %></li>
         <li><%= link_to 'Songs', songs_path %></li>       
       </ul>
+    </div>
+    <div class="col-md-3">
+        <%= form_tag searches_index_path, method: "get", class: "search form-inline" do %>
+          <%= text_field_tag(:search, "", placeholder: "Enter artist name", class: "form-control") %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
     </div>
     <div class="col-md-3">
       <ul>

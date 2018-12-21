@@ -27,6 +27,8 @@ class ArtistsController < ApplicationController
         end
     end
 
+    helper_method :create
+
     def update
         @artist = Artist.find(params[:id])
 
