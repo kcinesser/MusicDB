@@ -33,12 +33,18 @@
     </p>
     <p>
         <%= form.label :difficulty %><br>
-        <%= form.select :difficulty, Song.difficulties.keys.map { |m| [m.titlecase, m]} %>
+        <%= form.select :difficulty, (0..5).each { |m| [m]} %></br>
+        1 = Beginner, 5 = Advanced
     </p>
     <p>
         <%= form.label :video %><br>
-        <%= form.text_field :url %>
+        <%= form.text_field :video_url %></br>
         Enter embed code (i.e. if URL is https://www.youtube.com/watch?v=2CYKtIu2oro, enter 2CYKtIu2oro)
+    </p>
+    <p>
+        <%= form.label :spotify %><br>
+        <%= form.text_field :spotify_url %></br>
+        Enter embed code (i.e. if URL is https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ, enter 5ihS6UUlyQAfmp48eSkxuQ)
     </p>
     <p>
         <%= form.submit class: 'btn' %>

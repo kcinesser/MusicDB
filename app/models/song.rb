@@ -5,6 +5,9 @@ class Song < ApplicationRecord
   has_many :notes, dependent: :destroy
 
   enum status: [:not_started, :in_progress, :proficient, :mastered]
-  enum difficulty: [:beginner, :intermediate, :advanced]
   enum instrument: [:guitar, :electric_guitar, :piano]
+
+  def blank_stars
+    5 - difficulty.to_i
+  end
 end

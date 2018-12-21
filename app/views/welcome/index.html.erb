@@ -36,11 +36,14 @@
                         <td><%= link_to song.title, artist_song_path(song.artist, song) %></td>
                         <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
                         <td><% if song.tab.attached? %>
-                            <i class="far fa-file"></i>
-                          <% end %>
-                          <% if song.url.present? %>
-                            <i class="fab fa-youtube"></i>
-                          <% end %>
+                                <i class="far fa-file"></i>
+                            <% end %>
+                            <% if song.spotify_url.present? %>
+                                <i class="fab fa-spotify"></i>
+                            <% end %>
+                            <% if song.video_url.present? %>
+                                <i class="fab fa-youtube"></i>
+                            <% end %>
                         </td>
                     </tr>
                 <% end %>
@@ -64,11 +67,14 @@
                         <td><%= link_to song.title, artist_song_path(song.artist, song) %></td>
                         <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
                         <td><% if song.tab.attached? %>
-                            <i class="far fa-file"></i>
-                          <% end %>
-                          <% if song.url.present? %>
-                            <i class="fab fa-youtube"></i>
-                          <% end %>
+                                <i class="far fa-file"></i>
+                            <% end %>
+                            <% if song.spotify_url.present? %>
+                                <i class="fab fa-spotify"></i>
+                            <% end %>
+                            <% if song.video_url.present? %>
+                                <i class="fab fa-youtube"></i>
+                            <% end %>
                         </td>
                     </tr>
                 <% end %>

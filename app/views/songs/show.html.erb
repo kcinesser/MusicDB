@@ -9,7 +9,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <p><%= @song.status.titlecase %></p>
 
         <% if @song.instrument.present? %>
@@ -17,13 +17,27 @@
         <% end %>
 
         <% if @song.difficulty.present? %>
-            <p><%= @song.difficulty.titlecase %></p>
+            <p><% @song.difficulty.to_i.times do  %>
+                    <i class="fas fa-star"></i>
+                <% end %>
+                <% @song.blank_stars.times do %>
+                    <i class="far fa-star"></i>
+                <% end %></p>
         <% end %>
     </div>
+
+    <div class="col-md-6">
+        <% if @song.spotify_url.present? %>
+        <iframe src="https://open.spotify.com/embed/track/<%= @song.spotify_url %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <% else %>
+            <p>No Spotify track.</p>
+        <% end %>
+    </div>
+
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 notes">
         <h2>Notes</h2>
         <% if @song.notes.present? %>
             <% @song.notes.each do |note| %>
@@ -51,14 +65,8 @@
     </div>
     <div class="col-md-6">
         <h2>Video</h2>
-        <% if @song.url.present? %>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @song.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <% if @song.video_url.present? %>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @song.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <% end %>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-            <iframe src="https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
 </div>

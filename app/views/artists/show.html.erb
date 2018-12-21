@@ -19,13 +19,21 @@
                 <%= song.status.titlecase %>
               <% end %></td>
           <td><% if song.difficulty.present? %>
-                <%= song.difficulty.titlecase %>
+                <% song.difficulty.to_i.times do  %>
+                  <i class="fas fa-star"></i>
+                <% end %>
+                <% song.blank_stars.times do %>
+                  <i class="far fa-star"></i>
+                <% end %>
               <% end %>
           </td>
           <td><% if song.tab.attached? %>
                 <i class="far fa-file"></i>
               <% end %>
-              <% if song.url.present? %>
+              <% if song.spotify_url.present? %>
+                <i class="fab fa-spotify"></i>
+              <% end %>
+              <% if song.video_url.present? %>
                 <i class="fab fa-youtube"></i>
               <% end %>
           </td>
