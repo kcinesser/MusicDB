@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
+  devise_scope :user do
+    authenticated :user do
+      root 'welcome#index', as: :authenticated_root
+    end
+  
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   get 'tab/show'
   get 'tab/create'
   get 'welcome/index'
