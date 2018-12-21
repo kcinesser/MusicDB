@@ -36,6 +36,11 @@
         <%= form.select :difficulty, Song.difficulties.keys.map { |m| [m.titlecase, m]} %>
     </p>
     <p>
+        <%= form.label :video %><br>
+        <%= form.text_field :url %>
+        Enter embed code (i.e. if URL is https://www.youtube.com/watch?v=2CYKtIu2oro, enter 2CYKtIu2oro)
+    </p>
+    <p>
         <%= form.submit class: 'btn' %>
     </p>
  

@@ -26,18 +26,21 @@
                 <tr>
                     <th>Recent Songs</th>
                     <th></th>
-                    <th>Tab</th>
+                    <th></th>
                 </tr>
                 
                 <% @songs = @songs.order("created_at").reverse %>
                 
                 <% @songs[0..9].each do |song| %>
                     <tr>
-                        <td><%= song.title %></td>
+                        <td><%= link_to song.title, artist_song_path(song.artist, song) %></td>
                         <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
                         <td><% if song.tab.attached? %>
-                                <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
-                            <% end %>
+                            <i class="far fa-file"></i>
+                          <% end %>
+                          <% if song.url.present? %>
+                            <i class="fab fa-youtube"></i>
+                          <% end %>
                         </td>
                     </tr>
                 <% end %>
@@ -58,11 +61,14 @@
             <% @songs.each do |song| %>
                 <% if song.status == "in_progress" %>
                     <tr>
-                        <td><%= song.title %></td>
+                        <td><%= link_to song.title, artist_song_path(song.artist, song) %></td>
                         <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
                         <td><% if song.tab.attached? %>
-                                <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
-                            <% end %>
+                            <i class="far fa-file"></i>
+                          <% end %>
+                          <% if song.url.present? %>
+                            <i class="fab fa-youtube"></i>
+                          <% end %>
                         </td>
                     </tr>
                 <% end %>

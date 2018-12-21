@@ -10,8 +10,9 @@
             <tr>
                 <th>Title</th>
                 <th>Artist</th>
-                <th>Tab</th>
                 <th>Status</th>
+                <th>Difficulty</th>
+                <th></th>
                 <th></th>
             </tr>
 
@@ -20,11 +21,17 @@
                 <tr>
                     <td><%= link_to song.title, artist_song_path(song.artist,song) %></td>
                     <td><%= link_to song.artist.name, artist_path(song.artist) %></td>
-                    <td><% if song.tab.attached? %>
-                            <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
-                        <% end %>
-                    </td>
                     <td><%= song.status.titlecase %></td>
+                    <td><% if song.difficulty.present? %>
+                        <%= song.difficulty.titlecase %>
+                        <% end %></td>
+                    <td><% if song.tab.attached? %>
+                        <i class="far fa-file"></i>
+                      <% end %>
+                      <% if song.url.present? %>
+                        <i class="fab fa-youtube"></i>
+                      <% end %>
+                    </td>
                     <td><%= link_to edit_artist_song_path(song.artist,song) do %>
                             <i class="fas fa-pencil-alt"></i>
                         <% end %>

@@ -8,20 +8,27 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
   <h2>Songs</h2>
   <table class="table-hover table-striped">
     <% if @artist.songs.present? %>
       <% @artist.songs.each do |song| %>
         <tr>
           <td><%= link_to song.title, artist_song_path(@artist,song) %></td>
-          <td><% if song.tab.attached? %>
-                <%= link_to 'Tab', rails_blob_path(song.tab, disposition: "attachment") %>
-              <% end %>
-          </td>
           <td><% if song.status? %>
                 <%= song.status.titlecase %>
               <% end %></td>
+          <td><% if song.difficulty.present? %>
+                <%= song.difficulty.titlecase %>
+              <% end %>
+          </td>
+          <td><% if song.tab.attached? %>
+                <i class="far fa-file"></i>
+              <% end %>
+              <% if song.url.present? %>
+                <i class="fab fa-youtube"></i>
+              <% end %>
+          </td>
           <td><%= link_to edit_artist_song_path(@artist,song) do %>
                 <i class="fas fa-pencil-alt"></i>
               <% end %>
@@ -38,7 +45,7 @@
       <% end %>
   </table>
 </div>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
       <h2>Add a song:</h2>
       <p>

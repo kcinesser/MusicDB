@@ -1,4 +1,5 @@
 class ArtistsController < ApplicationController
+
     def index
         @artists = Artist.all
     end
@@ -17,6 +18,7 @@ class ArtistsController < ApplicationController
 
     def create
         @artist = Artist.new(artist_params)
+        @artist.user = current_user
 
         if @artist.save
             redirect_to @artist
@@ -45,6 +47,6 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name)
+        params.require(:artist).permit(:name, :user_id)
     end
 end
