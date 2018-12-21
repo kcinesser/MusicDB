@@ -89,6 +89,13 @@ form label {
     font-weight: 700;
 }
 
+form.search {
+    padding: 0px;
+    background-color: inherit;
+    box-shadow: none;
+    margin-top: 7px;
+}
+
 table {
     width: 100%;
 }
@@ -109,3 +116,8 @@ th, td {
     float: right;
     color: red;
 }   
+
+.search_image {
+    height: 100px;
+    width: 100px;
+}

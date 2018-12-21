@@ -1,0 +1,8 @@
+<h1>Artists Matching "<%= params[:search] %>"</h1>
+<div class="row">
+    <% @search_artists.each do |artist| %>
+        <div class="col-md-8">
+            <img src="<%= artist.images[0].to_h["url"] %>" class="search_image"/> <%= artist.name %>
+        </div>
+    <% end %>
+</div>

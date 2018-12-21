@@ -19,6 +19,7 @@ gem 'friendly_id', '~> 5.2.4' # Note: You MUST use 5.0.0 or greater for Rails 4.
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'devise'
+gem 'rspotify'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
