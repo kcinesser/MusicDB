@@ -36,7 +36,7 @@
         <%= form.select :difficulty, Song.difficulties.keys.map { |m| [m.titlecase, m]} %>
     </p>
     <p>
-        <%= form.submit %>
+        <%= form.submit class: 'btn' %>
     </p>
  
 <% end %>
