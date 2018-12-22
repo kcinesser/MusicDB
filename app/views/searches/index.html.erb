@@ -3,6 +3,7 @@
     <% @search_artists.each do |artist| %>
         <div class="col-md-8">
             <img src="<%= artist.images[0].to_h["url"] %>" class="search_image"/> <%= artist.name %>
+            <%= link_to "Add Artist", artists_path("artist"=>{:name => artist.name}), method: :create, class: :btn %>
         </div>
     <% end %>
 </div>
