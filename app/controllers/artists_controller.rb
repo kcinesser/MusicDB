@@ -29,6 +29,7 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
+        @artist.user = current_user
 
         if @artist.update(artist_params)
             redirect_to @artist
@@ -47,6 +48,6 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :user_id)
+        params.require(:artist).permit(:name, :user_id, :spotify_id, :photo)
     end
 end
