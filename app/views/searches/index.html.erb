@@ -7,8 +7,15 @@
                 <h2><%= artist.name %></h2>
                 <div class="icons">
                     <a href="https://open.spotify.com/artist/<%= artist.id %>" target="_blank"><i class="fab fa-spotify"></i></a>
-                    <%= link_to artists_path("artist"=>{:name => artist.name, :spotify_id => artist.id, :photo => artist.images[0].to_h["url"]}), method: :create do %>
-                        <i class="fas fa-plus"></i>
+                    <% if Artist.where(name: artist.name).exists? %>
+                    <% @artist = Artist.where(name: artist.name).first %>
+                        <%= link_to artist_path(@artist) do %>
+                            <i class="fas fa-link"></i>
+                        <% end %>    
+                    <% else %>
+                        <%= link_to artists_path("artist"=>{:name => artist.name, :spotify_id => artist.id, :photo => artist.images[0].to_h["url"]}), method: :create do %>
+                            <i class="fas fa-plus"></i>
+                        <% end %>
                     <% end %>
                 </div>
             </div>

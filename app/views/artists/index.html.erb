@@ -3,7 +3,12 @@
         <h1>Artists</h1>
     </div>
     <div class="col-md-6">
-        <%= link_to 'New Artist', new_artist_path, class: :btn %>
+            <%= form_tag searches_index_path, method: "get", class: "search form-inline" do %>
+              <%= text_field_tag(:search, "", placeholder: "Enter artist name", class: "form-control") %>
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+              <%= link_to 'New Artist', new_artist_path, class: :btn %>
+
+            <% end %>
     </div>
 </div>
 

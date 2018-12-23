@@ -24,6 +24,11 @@
                     <i class="far fa-star"></i>
                 <% end %></p>
         <% end %>
+
+        <% if @song.tab.attached? %>
+            <%= link_to 'Tab', rails_blob_path(@song.tab, disposition: "attachment") %>
+        <% end %>
+
     </div>
 
     <div class="col-md-6">

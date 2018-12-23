@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'song_searches/index'
+  get 'song_searches/show'
   get 'searches/index'
   get 'searches/show'
   devise_for :users

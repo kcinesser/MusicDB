@@ -1,65 +1,75 @@
 <div class="header row">
-  <div class="col-md-6">
-    <h1><%= @artist.name %></h1>
-    <% if @artist.photo.present? %>
-    <img src="<%= @artist.photo %>" height="100" width="auto"/>
-    <% end %>
+  <div class="col-md-9 artist_header" style="background-image: url(<%= @artist.photo %>);">
+      <h1><%= @artist.name %></h1>
+      <a href="https://open.spotify.com/artist/<%= @artist.spotify_id %>" target="_blank"><i class="fab fa-spotify"></i></a>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-3">
     <%= link_to 'Edit', edit_artist_path(@artist), class: :btn %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-8">
-  <a href="https://open.spotify.com/artist/<%= @artist.spotify_id %>" target="_blank" class="btn">Open in Spotify</a>
-  <h2>Songs</h2>
-  <table class="table-hover table-striped">
-    <% if @artist.songs.present? %>
-      <% @artist.songs.each do |song| %>
-        <tr>
-          <td><%= link_to song.title, artist_song_path(@artist,song) %></td>
-          <td><% if song.status? %>
-                <%= song.status.titlecase %>
-              <% end %></td>
-          <td><% if song.difficulty.present? %>
-                <% song.difficulty.to_i.times do  %>
-                  <i class="fas fa-star"></i>
+    <h2>Songs</h2>
+    <table class="table-hover table-striped">
+      <% if @artist.songs.present? %>
+        <% @artist.songs.each do |song| %>
+          <tr>
+            <td><%= link_to song.title, artist_song_path(@artist,song) %></td>
+            <td><% if song.status? %>
+                  <%= song.status.titlecase %>
+                <% end %></td>
+            <td><% if song.difficulty.present? %>
+                  <% song.difficulty.to_i.times do  %>
+                    <i class="fas fa-star"></i>
+                  <% end %>
+                  <% song.blank_stars.times do %>
+                    <i class="far fa-star"></i>
+                  <% end %>
                 <% end %>
-                <% song.blank_stars.times do %>
-                  <i class="far fa-star"></i>
+            </td>
+            <td><% if song.tab.attached? %>
+                  <i class="far fa-file"></i>
                 <% end %>
-              <% end %>
-          </td>
-          <td><% if song.tab.attached? %>
-                <i class="far fa-file"></i>
-              <% end %>
-              <% if song.spotify_url.present? %>
-                <i class="fab fa-spotify"></i>
-              <% end %>
-              <% if song.video_url.present? %>
-                <i class="fab fa-youtube"></i>
-              <% end %>
-          </td>
-          <td><%= link_to edit_artist_song_path(@artist,song) do %>
-                <i class="fas fa-pencil-alt"></i>
-              <% end %>
-              <%= link_to [song.artist, song],
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } do %>
-                      <i class="fas fa-times"></i>
-              <% end %>
-          </td>
-        </tr>
-      <% end %>
-    <% else %>
+                <% if song.spotify_url.present? %>
+                  <i class="fab fa-spotify"></i>
+                <% end %>
+                <% if song.video_url.present? %>
+                  <i class="fab fa-youtube"></i>
+                <% end %>
+            </td>
+            <td><%= link_to edit_artist_song_path(@artist,song) do %>
+                  <i class="fas fa-pencil-alt"></i>
+                <% end %>
+                <%= link_to [song.artist, song],
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } do %>
+                        <i class="fas fa-times"></i>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
         <td>This artist has no songs.</td>
       <% end %>
-  </table>
-</div>
+    </table>
+  </div>
   <div class="col-md-4">
+    <h2>Add a song:</h2>
+
+    <%= form_tag song_searches_index_path, method: "get" do %>
+      <p>
+        <%= text_field_tag(:search, "", placeholder: "Seach song name", class: "form-control") %>
+      </p>
+      <%= hidden_field_tag(:artist_id, @artist.id) %>
+      <p>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      </p>
+    <% end %>
+
+    <p>Or enter song information.</p>
+
     <%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
-      <h2>Add a song:</h2>
       <p>
         <%= form.label :title %><br>
         <%= form.text_field :title, required: :true %>
@@ -73,10 +83,28 @@
         <%= form.select :status, Song.statuses.keys.map { |m| [m.titlecase, m]} %>
       </p>
       <p>
+          <%= form.label :instrument %><br>
+          <%= form.select :instrument, Song.instruments.keys.map { |m| [m.titlecase, m]} %>
+      </p>
+      <p>
+          <%= form.label :difficulty %><br>
+          <%= form.select :difficulty, (0..5).each { |m| [m]} %></br>
+          1 = Beginner, 5 = Advanced
+      </p>
+      <p>
+          <%= form.label :video %><br>
+          <%= form.text_field :video_url %></br>
+          Enter embed code (i.e. if URL is https://www.youtube.com/watch?v=2CYKtIu2oro, enter 2CYKtIu2oro)
+      </p>
+      <p>
+          <%= form.label :spotify %><br>
+          <%= form.text_field :spotify_url %></br>
+          Enter embed code (i.e. if URL is https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ, enter 5ihS6UUlyQAfmp48eSkxuQ)
+      </p>
+      <p>
         <%= form.submit 'Submit', :class => 'btn' %>
       </p>
     <% end %>
   </div>
 
 </div>
-
