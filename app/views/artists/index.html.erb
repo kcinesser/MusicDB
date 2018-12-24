@@ -16,14 +16,13 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-        <table class="table-striped table-hover">
+        <table class="table-hover">
             <tr>
                 <th>Name</th>
                 <th># Songs</th>
                 <th colspan='3'></th>
             </tr>
 
-            <% @artists = @artists.order("name") %>
             <% @artists.each do |artist| %>
                 <tr>
                     <td><%= link_to artist.name, artist_path(artist) %></td>

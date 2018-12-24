@@ -8,10 +8,10 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row songs_list">
   <div class="col-md-8">
     <h2>Songs</h2>
-    <table class="table-hover table-striped">
+    <table class="table-hover">
       <% if @artist.songs.present? %>
         <% @artist.songs.each do |song| %>
           <tr>

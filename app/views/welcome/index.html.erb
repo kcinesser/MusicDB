@@ -2,27 +2,26 @@
 
 <div class="row">
     <div class="col-sm-6">
-    <table class="table-striped table-hover">
-        <tr>
-            <th>Recent Artists</th>
-            <th colspan='3'># Songs</th>
-        </tr>
+            <table class="table-hover">
+                <tr>
+                    <th>Recent Artists</th>
+                    <th colspan='3'># Songs</th>
+                </tr>
 
-        <% @artists = @artists.order("created_at").reverse %>
+                <% @artists = @artists.order("created_at").reverse %>
 
-        <% @artists[0..9].each do |artist| %>
-            <tr>
-                <td><%= link_to artist.name, artist_path(artist) %></td>
-                <td><%= artist.songs.count %></td>
-            </tr>
-        <% end %>
-    </table>
-
-    <p><%= link_to 'View All Artists', { controller: 'artists' }, class: "btn" %></p>
+                <% @artists[0..9].each do |artist| %>
+                    <tr>
+                        <td><%= link_to artist.name, artist_path(artist) %></td>
+                        <td><%= artist.songs.count %></td>
+                    </tr>
+                <% end %>
+            </table>
+        <p><%= link_to 'View All Artists', { controller: 'artists' }, class: "btn" %></p>
     </div>
 
     <div class="col-sm-6">
-        <table class="table-striped table-hover">
+        <table class="table-hover">
                 <tr>
                     <th>Recent Songs</th>
                     <th></th>
@@ -48,14 +47,13 @@
                     </tr>
                 <% end %>
             </table>
-
         <p><%= link_to 'View All Songs', { controller: 'songs' }, class: "btn" %></p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-6">
-        <table class="table-striped table-hover">
+        <table class="table-hover">
             <tr>
                 <th>In Progress Songs</th>
                 <th></th>
