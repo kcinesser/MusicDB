@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :artists
+  has_many :resources
   has_many :songs, through: :artists
 end

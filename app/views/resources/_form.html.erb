@@ -1,0 +1,35 @@
+<%= form_for(@resource) do |form| %>
+ 
+    <% if @resource.errors.any? %>
+        <div id="error_explanation">
+        <h2>
+            <%= pluralize(@resource.errors.count, "error") %> prohibited
+            this resource from being saved:
+        </h2>
+        <ul>
+            <% @resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+    
+    <p>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+    </p>
+
+    <p>
+        <%= form.label :pdf %><br>
+        <%= form.file_field :pdf, multiple: false, direct_upload: true %>
+    </p>
+    <p>
+        <%= form.label :url %><br>
+        <%= form.text_field :url %></br>
+        Enter embed code (i.e. if URL is https://www.youtube.com/watch?v=2CYKtIu2oro, enter 2CYKtIu2oro)
+    </p>
+    <p>
+        <%= form.submit class: 'btn' %>
+    </p>
+ 
+<% end %>

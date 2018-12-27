@@ -1,0 +1,23 @@
+<div class="header row">
+    <div class="col-md-12">
+            <h1><%= @resource.title %></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <% if @resource.pdf.attached? %>
+            <%= link_to image_tag("tab.gif", :width => "150px", :height => "auto", :class => "tab"), rails_blob_path(@resource.pdf, disposition: "attachment") %> 
+        <% else %>
+            <p>No file for this resource.</p>
+        <% end %>
+    </div>
+    <div class="col-md-6">
+        <h2>Video</h2>
+        <% if @resource.url.present? %>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @resource.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <% else %>
+            <p>No video for this resource.</p>
+        <% end %>
+    </div>
+</div>

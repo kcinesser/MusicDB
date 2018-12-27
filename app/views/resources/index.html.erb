@@ -1,0 +1,28 @@
+<div class="header row">
+    <div class="col-md-12">
+        <h1>Resources</h1>
+        <%= link_to 'Add New', new_resource_path, class: :btn %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table-hover">
+            <tr>
+                <th>Title</th>
+            </tr>
+
+            <% @resources = @resources.order("title") %>
+            <% @resources.each do |resource| %>
+                <tr>
+                    <td><%= link_to resource.title, resource_path(resource) %></td>
+                    <td><%= link_to resource,
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } do %>
+                                <i class="fas fa-times"></i>
+                        <% end %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
