@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 attachment">
         <% if @resource.pdf.attached? %>
             <%= link_to image_tag("tab.gif", :width => "150px", :height => "auto", :class => "tab"), rails_blob_path(@resource.pdf, disposition: "attachment") %> 
         <% else %>
@@ -21,3 +21,32 @@
         <% end %>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-6 notes">
+        <h2>Notes</h2>
+        <% if @resource.resource_notes.present? %>
+            <% @resource.resource_notes.each do |note| %>
+                <p><%= note.body %>
+                    <%= link_to [note.resource, note],
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' } do %>
+                                <i class="fas fa-times"></i>
+                    <% end %>
+                </p>
+            <% end %>
+        <% else %>
+            <p>No notes.</p>
+        <% end %>
+
+        <%= form_with(model: [ @resource, @resource.resource_notes.build ], local: true) do |form| %>
+            <strong>New Note</strong>
+            <p>
+                <%= form.text_area :body %>
+            </p>
+            <p>
+                <%= form.submit class: 'btn' %>
+            </p>
+        <% end %>
+    </div>
+<div>

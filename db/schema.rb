@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_042131) do
+ActiveRecord::Schema.define(version: 2018_12_27_215934) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2018_12_27_042131) do
     t.index ["song_id"], name: "index_notes_on_song_id"
   end
 
+  create_table "resource_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "body"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_id"], name: "index_resource_notes_on_resource_id"
+  end
+
   create_table "resources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "url"
@@ -87,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_042131) do
 
   add_foreign_key "artists", "users"
   add_foreign_key "notes", "songs"
+  add_foreign_key "resource_notes", "resources"
   add_foreign_key "resources", "users"
   add_foreign_key "songs", "artists"
 end

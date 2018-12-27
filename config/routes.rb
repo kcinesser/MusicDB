@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources :songs 
   end
 
-  resources :resources
+  resources :resources do
+    resources :resource_notes
+  end
   
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
