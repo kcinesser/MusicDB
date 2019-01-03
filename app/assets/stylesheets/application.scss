@@ -174,10 +174,20 @@ th, td {
     padding: 150px 50px;
     background-size: cover;
 
-    h1, i {
+    h1, i.spotify {
         color: #fff;
         display: inline;
         position: relative;
+    }
+
+    a {
+        position: relative;
+        display: block;
+        color: #fff;
+
+        &.spotify {
+            display: inline;
+        }
     }
 
     i {

@@ -1,10 +1,8 @@
 <div class="header row">
-  <div class="col-md-10 artist_header" style="background-image: url(<%= @artist.photo %>);">
+  <div class="col-md-12 artist_header" style="background-image: url(<%= @artist.photo %>);">
       <h1><%= @artist.name %></h1>
-      <a href="https://open.spotify.com/artist/<%= @artist.spotify_id %>" target="_blank"><i class="fab fa-spotify"></i></a>
-  </div>
-  <div class="col-md-2">
-    <%= link_to 'Edit', edit_artist_path(@artist), class: :btn %>
+      <a class="spotify" href="https://open.spotify.com/artist/<%= @artist.spotify_id %>" target="_blank"><i class="fab fa-spotify"></i></a>
+      <%= link_to 'Edit', edit_artist_path(@artist) %>
   </div>
 </div>
 <div class="row songs_list">
@@ -62,12 +60,9 @@
     <form class="song-search-form search" accept-charset="UTF-8">
           <input name="utf8" type="hidden" value="✓">
           <p>
-            <input type="text" name="search" id="search" value="" placeholder="Seach song name" class="form-control">
+            <input type="text" name="search" id="song-search" value="" placeholder="Seach song name" class="form-control">
           </p>
           <input type="hidden" name="artist_id" id="artist_id" value="<%= @artist.id %>">
-          <p>
-            <input type="submit" name="commit" value="Search" class="song_search btn btn-primary" data-disable-with="Search">
-          </p>
     </form>
 
     <table class="search-results table-hover">
@@ -81,7 +76,7 @@
     <%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
       <p>
         <%= form.label :title %><br>
-        <%= form.text_field :title, required: :true %>
+        <%= form.text_field :title, required: :true, class: "form-control" %>
       </p>
       <p>
         <%= form.label :tab %><br>
@@ -102,12 +97,12 @@
       </p>
       <p>
           <%= form.label :video %><br>
-          <%= form.text_field :video_url %></br>
+          <%= form.text_field :video_url, class: "form-control" %></br>
           Enter embed code (i.e. if URL is https://www.youtube.com/watch?v=2CYKtIu2oro, enter 2CYKtIu2oro)
       </p>
       <p>
           <%= form.label :spotify %><br>
-          <%= form.text_field :spotify_url %></br>
+          <%= form.text_field :spotify_url, class: "form-control" %></br>
           Enter embed code (i.e. if URL is https://open.spotify.com/embed/track/5ihS6UUlyQAfmp48eSkxuQ, enter 5ihS6UUlyQAfmp48eSkxuQ)
       </p>
       <p>

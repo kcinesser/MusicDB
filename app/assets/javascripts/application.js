@@ -57,5 +57,5 @@ $( document ).ready(function() {
         });
     }
     
-    $(".btn.song_search").on("click",ajaxCall);
+    $("#song-search").on("input",ajaxCall);
 });
