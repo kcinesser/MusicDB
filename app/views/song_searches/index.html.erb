@@ -13,7 +13,7 @@
                     <% end %>
                 </td>
                 <td>
-                    <%= link_to artist_songs_path(@artist.id, "song"=>{:title => song.name, :status => :not_started, :spotify_url => song.id}), method: :create do %>
+                    <%= link_to artist_songs_path(@artist.id, "song"=>{:title => song.name, :status => :not_started, :spotify_url => song.id, :difficulty => 0}), method: :create do %>
                         <i class="fas fa-plus"></i>
                     <% end %>
                 </td>

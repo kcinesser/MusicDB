@@ -7,9 +7,9 @@ class SongSearchesController < ApplicationController
 
     if !params[:search].empty?
       @result = RSpotify::Track.search(@search_string)
-      puts @result
+      render json: @result
     else
-      redirect_to root_path
+      redirect_to artist_path(@artist)
     end
   end
 

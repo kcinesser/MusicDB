@@ -2,12 +2,13 @@
     <div class="col-md-6">
         <h1>Artists</h1>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
             <%= form_tag searches_index_path, method: "get", class: "search form-inline" do %>
-              <%= text_field_tag(:search, "", placeholder: "Enter artist name", class: "form-control") %>
+              <%= text_field_tag(:search, "", placeholder: "Search Spotify for Artist", class: "form-control") %>
               <%= submit_tag "Search", class: "btn btn-primary" %>
             <% end %>
-
+    </div>
+    <div class="col-md-3">
             <%= link_to 'New Artist', new_artist_path, class: :btn %>
     </div>
 </div>

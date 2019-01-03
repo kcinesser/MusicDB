@@ -1,9 +1,9 @@
 <div class="header row">
-  <div class="col-md-9 artist_header" style="background-image: url(<%= @artist.photo %>);">
+  <div class="col-md-10 artist_header" style="background-image: url(<%= @artist.photo %>);">
       <h1><%= @artist.name %></h1>
       <a href="https://open.spotify.com/artist/<%= @artist.spotify_id %>" target="_blank"><i class="fab fa-spotify"></i></a>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <%= link_to 'Edit', edit_artist_path(@artist), class: :btn %>
   </div>
 </div>
@@ -53,21 +53,29 @@
       <% end %>
     </table>
   </div>
-  <div class="col-md-4">
+</div>
+
+<div class="row">
+  <div class="col-md-8">
     <h2>Search for a song:</h2>
 
-    <%= form_tag song_searches_index_path, method: "get", class: "song-search-form" do %>
-      <p>
-        <%= text_field_tag(:search, "", placeholder: "Seach song name", class: "form-control") %>
-      </p>
-      <%= hidden_field_tag(:artist_id, @artist.id) %>
-      <p>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      </p>
-    <% end %>
+    <form class="song-search-form search" accept-charset="UTF-8">
+          <input name="utf8" type="hidden" value="✓">
+          <p>
+            <input type="text" name="search" id="search" value="" placeholder="Seach song name" class="form-control">
+          </p>
+          <input type="hidden" name="artist_id" id="artist_id" value="<%= @artist.id %>">
+          <p>
+            <input type="submit" name="commit" value="Search" class="song_search btn btn-primary" data-disable-with="Search">
+          </p>
+    </form>
 
-    <div class="search-results"></div>
+    <table class="search-results table-hover">
+      <tbody></tbody>
+    </table>
+  </div>
 
+  <div class="col-md-4">
     <h2>Or add song manually:</h2>
 
     <%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
