@@ -26,7 +26,8 @@
 <div class="row">
     <div class="col-md-6 attachment">
         <% if @song.tab.attached? %>
-            <%= link_to image_tag("tab.gif", :width => "150px", :height => "auto", :class => "tab"), rails_blob_path(@song.tab, disposition: "attachment") %> 
+            <%= link_to image_tag("tab.gif", :width => "150px", :height => "auto", :class => "tab"), rails_blob_path(@song.tab, disposition: "attachment"), :target => "_blank" %> 
+            <%= @song.tab.previewable? %>
         <% end %>
     </div>
     <div class="col-md-6">

@@ -11,10 +11,6 @@ class SongSearchesController < ApplicationController
     else
       redirect_to root_path
     end
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def show

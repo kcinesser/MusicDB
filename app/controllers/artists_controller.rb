@@ -1,6 +1,8 @@
-class ArtistsController < ApplicationController       
+class ArtistsController < ApplicationController 
+    helper_method :sort_column, :sort_direction
+    
     def index
-        @artists = Artist.all
+        @artists = Artist.all.order("#{sort_column} #{sort_direction}")
     end
 
     def show
@@ -45,6 +47,18 @@ class ArtistsController < ApplicationController
     end
 
     private
+
+    def sortable_columns
+        ["name"]
+    end
+
+    def sort_column
+        sortable_columns.include?(params[:column]) ? params[:column] : "name"
+    end
+
+    def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 
     def artist_params
         params.require(:artist).permit(:name, :user_id, :spotify_id, :photo)

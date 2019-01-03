@@ -8,15 +8,14 @@
     <div class="col-md-10 all-artist-list">
         <table class="table-hover">
             <tr>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Status</th>
-                <th>Difficulty</th>
+                <th><%= sort_link "title" %></th>
+                <th><%= sort_link "name" %></th>
+                <th><%= sort_link "status" %></th>
+                <th><%= sort_link "difficulty" %></th>
                 <th></th>
                 <th></th>
             </tr>
 
-            <% @songs = @songs.order("title") %>
             <% @songs.each do |song| %>
                 <tr>
                     <td><%= link_to song.title, artist_song_path(song.artist,song) %></td>

@@ -56,7 +56,7 @@
   <div class="col-md-4">
     <h2>Search for a song:</h2>
 
-    <%= form_tag song_searches_index_path, remote: true, method: "get", class: "song-search-form" do %>
+    <%= form_tag song_searches_index_path, method: "get", class: "song-search-form" do %>
       <p>
         <%= text_field_tag(:search, "", placeholder: "Seach song name", class: "form-control") %>
       </p>
