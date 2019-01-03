@@ -1,6 +1,4 @@
 class SongSearchesController < ApplicationController
-  respond_to :js
-
   def index
     RSpotify.authenticate("2a406175acb24b7783878e1c0eeb3b32", "a3936b25fd9c4635abc0006ea02c9841")
 
@@ -9,8 +7,13 @@ class SongSearchesController < ApplicationController
 
     if !params[:search].empty?
       @result = RSpotify::Track.search(@search_string)
+      puts @result
     else
       redirect_to root_path
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 

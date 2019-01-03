@@ -7,7 +7,6 @@
     <%= link_to 'Edit', edit_artist_path(@artist), class: :btn %>
   </div>
 </div>
-
 <div class="row songs_list">
   <div class="col-md-8">
     <h2>Songs</h2>
@@ -55,9 +54,9 @@
     </table>
   </div>
   <div class="col-md-4">
-    <h2>Add a song:</h2>
+    <h2>Search for a song:</h2>
 
-    <%= form_tag song_searches_index_path, method: "get" do %>
+    <%= form_tag song_searches_index_path, remote: true, method: "get", class: "song-search-form" do %>
       <p>
         <%= text_field_tag(:search, "", placeholder: "Seach song name", class: "form-control") %>
       </p>
@@ -67,7 +66,9 @@
       </p>
     <% end %>
 
-    <p>Or enter song information.</p>
+    <div class="search-results"></div>
+
+    <h2>Or add song manually:</h2>
 
     <%= form_with(model: [ @artist, @artist.songs.build ], local: true) do |form| %>
       <p>
