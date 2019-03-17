@@ -19,9 +19,11 @@
 //= require_tree .
 
 $( document ).ready(function() {
-    console.log( "ready!" );
 
     var ajaxCall = function(e){
+        console.log( "ready!" );
+
+
         e.preventDefault();
 
         var data = $('form.search').serialize();
