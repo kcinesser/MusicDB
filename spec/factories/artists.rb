@@ -11,10 +11,10 @@
 #  photo      :string(255)
 #
 
-class Artist < ApplicationRecord
-    belongs_to :user
-
-    has_many :songs, dependent: :destroy
-    accepts_nested_attributes_for :songs
-    validates :name, presence: true, uniqueness: true
-end
+FactoryBot.define do
+    factory :artist do
+      name "Test Artist"
+      spotify_id "spotify id"
+      photo "photo"     
+    end
+  end
