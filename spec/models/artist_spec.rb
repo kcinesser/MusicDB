@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: artists
@@ -10,4 +12,3 @@
 #  spotify_id :string(255)
 #  photo      :string(255)
 #
-

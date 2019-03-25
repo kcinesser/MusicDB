@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: artists
@@ -12,9 +14,9 @@
 #
 
 class Artist < ApplicationRecord
-    belongs_to :user
+  belongs_to :user
 
-    has_many :songs, dependent: :destroy
-    accepts_nested_attributes_for :songs
-    validates :name, presence: true, uniqueness: true
+  has_many :songs, dependent: :destroy
+  accepts_nested_attributes_for :songs
+  validates :name, presence: true, uniqueness: true
 end

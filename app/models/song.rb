@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: songs
@@ -20,8 +22,8 @@ class Song < ApplicationRecord
   has_one_attached :tab
   has_many :notes, dependent: :destroy
 
-  enum status: [:not_started, :in_progress, :proficient, :mastered]
-  enum instrument: [:guitar, :electric_guitar, :piano]
+  enum status: %i[not_started in_progress proficient mastered]
+  enum instrument: %i[guitar electric_guitar piano]
 
   def blank_stars
     5 - difficulty.to_i

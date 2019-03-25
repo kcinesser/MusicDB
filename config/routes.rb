@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Route Map
 #
 #                      Prefix Verb   URI Pattern                                                                              Controller#Action
@@ -79,12 +81,12 @@ Rails.application.routes.draw do
   get 'searches/index'
   get 'searches/show'
   devise_for :users
-  
+
   devise_scope :user do
     authenticated :user do
       root 'welcome#index', as: :authenticated_root
     end
-  
+
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
@@ -97,15 +99,15 @@ Rails.application.routes.draw do
   resources :songs, only: [:index] do
     resources :notes
   end
-  
+
   resources :artists do
-    resources :songs 
+    resources :songs
   end
 
   resources :resources do
     resources :resource_notes
   end
-  
+
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

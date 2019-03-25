@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: artists
@@ -12,9 +14,9 @@
 #
 
 FactoryBot.define do
-    factory :artist do
-      name "Test Artist"
-      spotify_id "spotify id"
-      photo "photo"     
-    end
+  factory :artist do
+    name 'Test Artist'
+    spotify_id 'spotify id'
+    photo 'photo'
   end
+end
