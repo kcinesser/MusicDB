@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-6 attachment">
         <% if @resource.pdf.attached? %>
-            <%= link_to image_tag("tab.gif", :width => "150px", :height => "auto", :class => "tab"), rails_blob_path(@resource.pdf, disposition: "attachment") %> 
+            <%= link_to image_tag("tab.gif", :width => "150px", :height => "auto", :class => "tab"), @resource.pdf, :target => "_blank" %> 
         <% else %>
             <p>No file for this resource.</p>
         <% end %>

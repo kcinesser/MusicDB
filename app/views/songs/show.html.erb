@@ -69,6 +69,8 @@
         <h2>Video</h2>
         <% if @song.video_url.present? %>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @song.video_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <% else %>
+            <p>No video found. Edit to add a video.</p>
         <% end %>
     </div>
 </div>
